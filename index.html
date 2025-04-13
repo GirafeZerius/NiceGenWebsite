@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicegen - Coming Soon!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background: #000000;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-100px) translateX(30px);
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 250px;
+            height: 250px;
+            margin: 2rem auto;
+            position: relative;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin: 2rem 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .social-links {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .features {
+            width: 100%;
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .feature-intro {
+            text-align: center;
+            color: #fff;
+            margin: 4rem auto;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .feature-intro p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 1rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(88, 59, 161, 0.1), rgba(172, 152, 218, 0.05));
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(88, 59, 161, 0.2);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        .feature-title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: #b19cd9;
+            font-weight: 600;
+        }
+
+        .landing-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .features-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            padding: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <section class="landing-section">
+        <div class="container">
+            <div class="glow"></div>
+            <div class="logo">
+                <img src="images/nicegen-logo.png" alt="Nicegen Logo">
+            </div>
+            <h1>Welcome to Nicegen!</h1>
+            <div class="message">We will be in business soon!</div>
+            <div class="social-links">
+                <a href="https://discord.gg/nicegen" class="social-link" target="_blank">Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="feature-intro">
+            <p>NiceGen provides a lot of options for generating accounts, wich is set to make you happy on the long term. Restocks are almost everyday and if you require help or have an issue, you can easily open a ticket.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Easy to use</h3>
+                <p class="feature-description">NiceGen has a easy to use generator, and is a freemium service, all you have to do is type /gen to generate your desired account.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Price</h3>
+                <p class="feature-description">NiceGen is cheap with our 3 day trial being only 50 cents, our product is known for having cheap prices and will continue to do so.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12 6.627 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm-1.97 14.21v1.79c0 .383.311.694.694.694h2.552c.383 0 .694-.311.694-.694v-1.79c1.517-.25 2.667-1.563 2.667-3.157 0-1.594-1.15-2.907-2.667-3.157V8.106c0-.383-.311-.694-.694-.694h-2.552a.694.694 0 0 0-.694.694v1.79c-1.517.25-2.667 1.563-2.667 3.157 0 1.594 1.15 2.907 2.667 3.157zM12 9.5c1.381 0 2.5 1.119 2.5 2.5s-1.119 2.5-2.5 2.5-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Python</h3>
+                <p class="feature-description">We offer a Python API for creating your own generators and automating account creation, making it easy to integrate with your own projects!</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.opacity = Math.random() * 0.5;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Add mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelector('.logo').style.transform = 
+                `translate(${mouseX * 20 - 10}px, ${mouseY * 20 - 10}px)`;
+            
+            document.querySelector('.glow').style.background = 
+                `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(255,255,255,0.1) 0%, transparent 70%)`;
+        });
+    </script>
+</body>
+</html> 
