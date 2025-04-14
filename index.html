@@ -314,6 +314,34 @@
             border-style: solid;
             border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
         }
+
+        .store-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #6b46c1, #805ad5);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .store-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, #805ad5, #6b46c1);
+        }
+
+        .cart-icon {
+            width: 24px;
+            height: 24px;
+        }
     </style>
 </head>
 <body>
@@ -325,7 +353,14 @@
                 <img src="images/nicegen-logo.png" alt="Nicegen Logo">
             </div>
             <h1>Welcome to Nicegen!</h1>
-            <div class="message">We will be in business soon!</div>
+            <div class="message">
+                <a href="https://nicegen.sellsn.io" class="store-button" target="_blank">
+                    <svg class="cart-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    Visit Store
+                </a>
+            </div>
             <div class="social-links">
                 <a href="https://discord.gg/nicegen" class="social-link" target="_blank">Discord</a>
             </div>
