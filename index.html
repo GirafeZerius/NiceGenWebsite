@@ -23,6 +23,95 @@
             overflow-y: auto;
         }
 
+        /* ===== UPDATED TOPBAR STYLES ===== */
+        .topbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .panel {
+            position: relative;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .panel:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .panel-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-size: 0.95rem;
+        }
+
+        .panel:hover .panel-content {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(5px);
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #b19cd9;
+            font-weight: 600;
+        }
+
+        .panel-item {
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .panel-item strong {
+            color: #b19cd9;
+            font-weight: 500;
+        }
+
+        .shop-link {
+            text-decoration: none;
+            color: white !important;
+            display: block;
+        }
+
+        .info-highlight {
+            color: #b19cd9;
+            font-weight: 500;
+            margin: 8px 0;
+            display: block;
+        }
+
+        /* ===== ORIGINAL STYLES ===== */
         .particles {
             position: fixed;
             top: 0;
@@ -269,7 +358,6 @@
             padding: 4rem 0;
         }
 
-        /* New styles for the bottom-right image and nametag */
         .bottom-image-container {
             position: fixed;
             bottom: 20px;
@@ -317,6 +405,40 @@
     </style>
 </head>
 <body>
+    <!-- UPDATED TOPBAR -->
+    <div class="topbar">
+        <div class="panel">
+            Info
+            <div class="panel-content">
+                <div class="panel-title">About NiceGen</div>
+                <div class="panel-item">
+                    <span class="info-highlight">Premium Quality:</span> We specialize in high-success-rate account generation with 24/7 validity checks.
+                </div>
+                <div class="panel-item">
+                    <span class="info-highlight">Fast Support:</span> Average response time under 30 minutes via Discord tickets.
+                </div>
+                <div class="panel-item">
+                    <span class="info-highlight">Daily Restocks:</span> New inventory added every 6-12 hours across all categories.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            Credits
+            <div class="panel-content">
+                <div class="panel-title">Special Thanks To</div>
+                <div class="panel-item"><strong>Phax</strong> - Owner of the site (created original layout/design and provides great support)</div>
+                <div class="panel-item"><strong>Bypass</strong> - Optimized the site and helped with domain purchase</div>
+                <div class="panel-item"><strong>notphilipp</strong> - Helped set up domains and provides excellent support</div>
+            </div>
+        </div>
+        
+        <a href="https://nicegen.sells.io" class="panel shop-link">
+            Shop
+        </a>
+    </div>
+
+    <!-- ORIGINAL CONTENT -->
     <div class="particles" id="particles"></div>
     <section class="landing-section">
         <div class="container">
