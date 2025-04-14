@@ -39,8 +39,7 @@
             height: 2px;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            animation: float 12s infinite ease-in-out;
-            will-change: transform, opacity;
+            animation: float 8s infinite ease-in-out;
         }
 
         @keyframes float {
@@ -49,7 +48,7 @@
                 opacity: 0;
             }
             50% {
-                transform: translateY(-150px) translateX(50px);
+                transform: translateY(-100px) translateX(30px);
                 opacity: 0.8;
             }
         }
@@ -65,13 +64,14 @@
             margin: 20px;
             position: relative;
             z-index: 2;
-            animation: fadeIn 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            will-change: opacity, transform;
+            animation: fadeIn 1.5s ease-out;
         }
 
         @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -83,9 +83,7 @@
             height: 250px;
             margin: 2rem auto;
             position: relative;
-            animation: pulse 6s infinite cubic-bezier(0.4, 0, 0.2, 1), 
-                       floatLogo 8s infinite ease-in-out;
-            will-change: transform;
+            animation: pulse 4s infinite ease-in-out;
         }
 
         .logo img {
@@ -93,7 +91,6 @@
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes pulse {
@@ -102,15 +99,6 @@
             }
             50% {
                 transform: scale(1.05);
-            }
-        }
-
-        @keyframes floatLogo {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
             }
         }
 
@@ -124,21 +112,6 @@
             background: linear-gradient(45deg, #fff, #ccc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0;
-            animation: slideUpFadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: 0.3s;
-            will-change: opacity, transform;
-        }
-
-        @keyframes slideUpFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .message {
@@ -148,9 +121,19 @@
             font-weight: 300;
             letter-spacing: 1px;
             opacity: 0;
-            animation: slideUpFadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: 0.6s;
-            will-change: opacity, transform;
+            animation: slideUp 0.8s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .glow {
@@ -162,7 +145,6 @@
             background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
             pointer-events: none;
             z-index: 1;
-            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .social-links {
@@ -171,9 +153,8 @@
             justify-content: center;
             gap: 2rem;
             opacity: 0;
-            animation: fadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: 0.9s;
-            will-change: opacity;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-delay: 1s;
         }
 
         .social-link {
@@ -182,16 +163,14 @@
             padding: 0.8rem 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 25px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             font-size: 1rem;
             backdrop-filter: blur(5px);
-            transform: translateY(0);
-            will-change: transform, background, border-color;
         }
 
         .social-link:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.4);
         }
 
@@ -205,20 +184,6 @@
             gap: 2rem;
             z-index: 2;
             position: relative;
-            opacity: 0;
-            animation: fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            will-change: opacity, transform;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .feature-intro {
@@ -227,10 +192,6 @@
             margin: 4rem auto;
             max-width: 800px;
             padding: 0 2rem;
-            opacity: 0;
-            animation: fadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: 0.5s;
-            will-change: opacity;
         }
 
         .feature-intro p {
@@ -246,16 +207,12 @@
             padding: 2rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        border-color 0.4s ease;
-            will-change: transform, box-shadow;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(88, 59, 161, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(88, 59, 161, 0.2);
         }
 
         .feature-icon {
@@ -267,24 +224,12 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        background 0.4s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: rotate(5deg) scale(1.1);
-            background: rgba(255, 255, 255, 0.15);
         }
 
         .feature-icon svg {
             width: 30px;
             height: 30px;
             fill: #fff;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-card:hover .feature-icon svg {
-            transform: scale(1.1);
         }
 
         .feature-title {
@@ -292,22 +237,12 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .feature-card:hover .feature-title {
-            color: #b19cd9;
         }
 
         .feature-description {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .feature-card:hover .feature-description {
-            color: rgba(255, 255, 255, 0.95);
         }
 
         .highlight {
@@ -334,9 +269,20 @@
             padding: 4rem 0;
         }
 
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
+        /* New styles for the bottom-right image */
+        .bottom-image {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: auto;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .bottom-image.visible {
+            opacity: 1;
         }
     </style>
 </head>
@@ -394,68 +340,48 @@
         </div>
     </section>
 
+    <!-- Bottom right image -->
+    <img src="https://files.catbox.moe/464o6s.png" class="bottom-image" id="bottomImage" alt="Bottom decoration">
+
     <script>
         // Create floating particles
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.animationDelay = Math.random() * 8 + 's';
             particle.style.opacity = Math.random() * 0.5;
-            particle.style.width = (Math.random() * 3 + 1) + 'px';
-            particle.style.height = particle.style.width;
             particlesContainer.appendChild(particle);
         }
 
-        // Add smooth mouse parallax effect
-        let mouseX = 0, mouseY = 0;
-        let logoX = 0, logoY = 0;
-        let glowX = 50, glowY = 50;
-        const smoothingFactor = 0.05;
-        
+        // Add mouse parallax effect
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = e.clientY / window.innerHeight;
-        });
-
-        function smoothParallax() {
-            // Smooth the logo movement
-            logoX += (mouseX * 40 - 20 - logoX) * smoothingFactor;
-            logoY += (mouseY * 40 - 20 - logoY) * smoothingFactor;
-            
-            // Smooth the glow movement
-            glowX += (mouseX * 100 - glowX) * smoothingFactor;
-            glowY += (mouseY * 100 - glowY) * smoothingFactor;
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
             
             document.querySelector('.logo').style.transform = 
-                `translate(${logoX}px, ${logoY}px)`;
+                `translate(${mouseX * 20 - 10}px, ${mouseY * 20 - 10}px)`;
             
             document.querySelector('.glow').style.background = 
-                `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.1) 0%, transparent 70%)`;
-            
-            requestAnimationFrame(smoothParallax);
-        }
-        
-        // Start the smooth parallax effect
-        smoothParallax();
+                `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(255,255,255,0.1) 0%, transparent 70%)`;
+        });
 
-        // Animate features section when scrolled into view
-        const featuresSection = document.querySelector('.features-section');
-        const features = document.querySelector('.features');
-        const featureIntro = document.querySelector('.feature-intro');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    features.style.animation = 'fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards';
-                    featureIntro.style.animation = 'fadeIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        observer.observe(featuresSection);
+        // Show/hide bottom image based on scroll position
+        window.addEventListener('scroll', function() {
+            const bottomImage = document.getElementById('bottomImage');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.body.scrollHeight;
+            
+            // Show image when scrolled to bottom (with 100px threshold)
+            if (scrollPosition + windowHeight >= documentHeight - 100) {
+                bottomImage.classList.add('visible');
+            } else {
+                bottomImage.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>
