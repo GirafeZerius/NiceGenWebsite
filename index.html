@@ -292,7 +292,6 @@
             padding: 4rem 0;
         }
 
-        /* Update bottom image container */
         .bottom-image-container {
             position: fixed;
             bottom: 20px;
@@ -366,25 +365,56 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(45deg, rgba(107, 70, 193, 0.4), rgba(128, 90, 213, 0.4));
+            background: linear-gradient(45deg, #7b3fe4, #ff4da6);
             color: white;
             text-decoration: none;
             padding: 1rem 2rem;
-            border-radius: 30px;
+            border-radius: 35px;
             font-size: 1.2rem;
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            will-change: transform, box-shadow, border-color, background;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
+            animation: pulseButton 2s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .store-button::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 35px;
+            box-shadow: 0 0 0 2px #9b4dca;
+            animation: circulate 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulseButton {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes circulate {
+            0% {
+                box-shadow: 0 0 0 2px #9b4dca;
+            }
+            50% {
+                box-shadow: 0 0 0 2px #ff69b4;
+            }
+            100% {
+                box-shadow: 0 0 0 2px #9b4dca;
+            }
         }
 
         .store-button:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(107, 70, 193, 0.2);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: linear-gradient(45deg, rgba(128, 90, 213, 0.5), rgba(107, 70, 193, 0.5));
+            box-shadow: 0 8px 25px rgba(123, 63, 228, 0.4);
+            background: linear-gradient(45deg, #ff4da6, #7b3fe4);
         }
 
         .credits {
@@ -432,161 +462,6 @@
             fill: currentColor;
         }
 
-        /* Music Player Styles */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 15px;
-            width: 300px;
-            z-index: 1000;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: move;
-            transform-origin: left bottom;
-        }
-
-        .music-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            cursor: move;
-            z-index: 1001;
-            transition: transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-        }
-
-        .music-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .music-toggle svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-            pointer-events: none;
-        }
-
-        .music-player.hidden {
-            transform: scale(0);
-            opacity: 0;
-        }
-
-        .music-toggle.dragging {
-            opacity: 0.8;
-            transform: scale(1.1);
-        }
-
-        .music-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .play-pause-btn {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-        }
-
-        .play-pause-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .play-pause-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .mute-btn {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-        }
-
-        .mute-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .mute-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-            margin: 10px 0;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #6b46c1, #805ad5);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .time-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .song-info {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .song-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .song-artist {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .container {
                 padding: 2rem 1rem;
@@ -631,6 +506,11 @@
             .store-button {
                 padding: 0.8rem 1.5rem;
                 font-size: 1rem;
+                border-radius: 30px;
+            }
+
+            .store-button::before {
+                border-radius: 30px;
             }
 
             .social-links {
@@ -669,15 +549,6 @@
                 width: 20px;
                 height: 20px;
             }
-
-            .music-player {
-                width: calc(100% - 40px);
-                bottom: 80px;
-            }
-
-            .theme-dropdown {
-                min-width: 180px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -713,6 +584,11 @@
             .store-button {
                 padding: 0.7rem 1.2rem;
                 font-size: 0.9rem;
+                border-radius: 25px;
+            }
+
+            .store-button::before {
+                border-radius: 25px;
             }
 
             .social-link {
@@ -732,185 +608,6 @@
                 width: 18px;
                 height: 18px;
             }
-
-            .music-player {
-                width: calc(100% - 30px);
-                padding: 10px;
-                bottom: 70px;
-            }
-
-            .theme-dropdown {
-                min-width: 160px;
-                padding: 8px;
-            }
-
-            .theme-option {
-                padding: 8px 12px;
-            }
-        }
-
-        /* Theme Variables */
-        :root {
-            --background-color: #000000;
-            --text-color: #ffffff;
-            --accent-color: #6b46c1;
-            --accent-color-2: #805ad5;
-            --glow-color: rgba(255, 255, 255, 0.1);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-bg: linear-gradient(145deg, rgba(88, 59, 161, 0.1), rgba(172, 152, 218, 0.05));
-            --container-bg: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Theme Selector Styles */
-        .theme-dropdown {
-            position: absolute;
-            bottom: calc(100% + 10px);
-            right: 0;
-            background: var(--container-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            min-width: 200px;
-            transform-origin: bottom right;
-            animation: dropdownAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1001;
-            margin-bottom: 5px;
-        }
-
-        @keyframes dropdownAppear {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .theme-dropdown.show {
-            display: flex;
-        }
-
-        .theme-option {
-            padding: 10px 15px;
-            color: var(--text-color);
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-color);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .theme-option:hover::before {
-            opacity: 0.1;
-        }
-
-        .theme-option.active::before {
-            opacity: 0.2;
-        }
-
-        .theme-option span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .theme-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--border-color);
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .theme-option:hover .theme-color {
-            transform: scale(1.1);
-        }
-
-        /* Theme-specific styles */
-        body.theme-dark-sakura {
-            --background-color: #1a0f1f;
-            --text-color: #ffffff;
-            --accent-color: #ff69b4;
-            --accent-color-2: #ff1493;
-            --glow-color: rgba(255, 105, 180, 0.15);
-            --border-color: rgba(255, 105, 180, 0.2);
-            --card-bg: linear-gradient(145deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.05));
-            --container-bg: rgba(26, 15, 31, 0.85);
-        }
-
-        body.theme-purple {
-            --background-color: #1a1025;
-            --text-color: #ffffff;
-            --accent-color: #9b4dca;
-            --accent-color-2: #b19cd9;
-            --glow-color: rgba(155, 77, 202, 0.15);
-            --border-color: rgba(155, 77, 202, 0.2);
-            --card-bg: linear-gradient(145deg, rgba(155, 77, 202, 0.1), rgba(177, 156, 217, 0.05));
-            --container-bg: rgba(26, 16, 37, 0.85);
-        }
-
-        body.theme-red {
-            --background-color: #1f0f0f;
-            --text-color: #ffffff;
-            --accent-color: #ff4444;
-            --accent-color-2: #ff6b6b;
-            --glow-color: rgba(255, 68, 68, 0.15);
-            --border-color: rgba(255, 68, 68, 0.2);
-            --card-bg: linear-gradient(145deg, rgba(255, 68, 68, 0.1), rgba(255, 107, 107, 0.05));
-            --container-bg: rgba(31, 15, 15, 0.85);
-        }
-
-        /* Update container styles */
-        .container {
-            background: var(--container-bg);
-            border-color: var(--border-color);
-        }
-
-        /* Update existing styles to use variables */
-        body {
-            background: var(--background-color);
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-        }
-
-        .feature-card:hover {
-            border-color: var(--border-color);
-        }
-
-        .glow {
-            background: radial-gradient(circle at center, var(--glow-color) 0%, transparent 70%);
-        }
-
-        .store-button {
-            background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
-        }
-
-        .progress-bar {
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
         }
     </style>
 </head>
@@ -939,7 +636,7 @@
 
     <section class="features-section">
         <div class="feature-intro">
-            <p>NiceGen provides a lot of options for generating accounts, wich is set to make you happy on the long term. Restocks are almost everyday and if you require help or have an issue, you can easily open a ticket.</p>
+            <p>NiceGen provides a lot of options for generating accounts, which is set to make you happy on the long term. Restocks are almost everyday and if you require help or have an issue, you can easily open a ticket.</p>
         </div>
 
         <div class="features">
@@ -975,28 +672,9 @@
         </div>
     </section>
 
-    <!-- Bottom right image with nametag and theme selector -->
     <div class="bottom-image-container" id="bottomImageContainer">
         <div class="nametag"></div>
         <img src="https://files.catbox.moe/ai5ugc.gif" class="bottom-image" alt="Bottom decoration">
-        <div class="theme-dropdown" id="themeDropdown">
-            <div class="theme-option" data-theme="default">
-                <div class="theme-color" style="background: #6b46c1;"></div>
-                <span>Default</span>
-            </div>
-            <div class="theme-option" data-theme="dark-sakura">
-                <div class="theme-color" style="background: #ff69b4;"></div>
-                <span>Dark Sakura</span>
-            </div>
-            <div class="theme-option" data-theme="purple">
-                <div class="theme-color" style="background: #9b4dca;"></div>
-                <span>Purple</span>
-            </div>
-            <div class="theme-option" data-theme="red">
-                <div class="theme-color" style="background: #ff4444;"></div>
-                <span>Red</span>
-            </div>
-        </div>
     </div>
 
     <div class="credits">
@@ -1017,38 +695,6 @@
                     <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437z"/>
                 </svg>
             </a>
-        </div>
-    </div>
-
-    <button class="music-toggle" id="musicToggle">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-        </svg>
-    </button>
-
-    <div class="music-player">
-        <div class="song-info">
-            <div class="song-title">Feels</div>
-            <div class="song-artist">Calvin Harris</div>
-        </div>
-        <div class="music-controls">
-            <button class="play-pause-btn" id="playPauseBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            </button>
-            <button class="mute-btn" id="muteBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                </svg>
-            </button>
-        </div>
-        <div class="progress-container" id="progressContainer">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="time-info">
-            <span id="currentTime">0:00</span>
-            <span id="duration">0:00</span>
         </div>
     </div>
 
@@ -1090,178 +736,6 @@
                 bottomImageContainer.classList.remove('visible');
             }
         });
-
-        // Music Player functionality
-        const audio = new Audio('Music/SpotiDownloader.com - Feels (feat. Pharrell Williams, Katy Perry & Big Sean) - Calvin Harris.mp3');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const muteBtn = document.getElementById('muteBtn');
-        const progressContainer = document.getElementById('progressContainer');
-        const progressBar = document.getElementById('progressBar');
-        const currentTimeEl = document.getElementById('currentTime');
-        const durationEl = document.getElementById('duration');
-        const songTitle = document.querySelector('.song-title');
-        const songArtist = document.querySelector('.song-artist');
-
-        // Play/Pause functionality
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-            } else {
-                audio.pause();
-                playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-            }
-        });
-
-        // Mute functionality
-        muteBtn.addEventListener('click', () => {
-            audio.muted = !audio.muted;
-            muteBtn.innerHTML = audio.muted ? 
-                '<svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>' :
-                '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
-        });
-
-        // Update progress bar
-        audio.addEventListener('timeupdate', () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = `${progress}%`;
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-        });
-
-        // Set duration when metadata is loaded
-        audio.addEventListener('loadedmetadata', () => {
-            durationEl.textContent = formatTime(audio.duration);
-            // Set initial song info
-            songTitle.textContent = 'Feels';
-            songArtist.textContent = 'Calvin Harris';
-        });
-
-        // Click on progress bar to seek
-        progressContainer.addEventListener('click', (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-            audio.currentTime = (clickX / width) * duration;
-        });
-
-        // Format time in minutes:seconds
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        // Music toggle and drag functionality
-        const musicToggle = document.getElementById('musicToggle');
-        const musicPlayer = document.querySelector('.music-player');
-        let isPlayerVisible = false;
-        let isDragging = false;
-        let startX, startY;
-        let offsetX = 0, offsetY = 0;
-
-        // Toggle player visibility
-        musicToggle.addEventListener('click', (e) => {
-            if (!isDragging) {
-                isPlayerVisible = !isPlayerVisible;
-                musicPlayer.classList.toggle('hidden');
-            }
-        });
-
-        // Drag functionality
-        musicToggle.addEventListener('mousedown', startDragging);
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', stopDragging);
-
-        function startDragging(e) {
-            isDragging = false;
-            startX = e.clientX - offsetX;
-            startY = e.clientY - offsetY;
-            
-            // Start a timer to check if this is a drag or click
-            setTimeout(() => {
-                if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
-                    isDragging = true;
-                    musicToggle.classList.add('dragging');
-                }
-            }, 100);
-        }
-
-        function drag(e) {
-            if (!isDragging) return;
-            
-            e.preventDefault();
-            offsetX = e.clientX - startX;
-            offsetY = e.clientY - startY;
-            
-            // Keep the button within window bounds
-            const rect = musicToggle.getBoundingClientRect();
-            const maxX = window.innerWidth - rect.width;
-            const maxY = window.innerHeight - rect.height;
-            
-            offsetX = Math.min(Math.max(0, offsetX), maxX);
-            offsetY = Math.min(Math.max(0, offsetY), maxY);
-            
-            musicToggle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        }
-
-        function stopDragging() {
-            isDragging = false;
-            musicToggle.classList.remove('dragging');
-        }
-
-        // Close player when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!musicPlayer.contains(e.target) && !musicToggle.contains(e.target) && isPlayerVisible) {
-                isPlayerVisible = false;
-                musicPlayer.classList.add('hidden');
-            }
-        });
-
-        // Theme selector functionality
-        const bottomImageContainer = document.getElementById('bottomImageContainer');
-        const themeDropdown = document.getElementById('themeDropdown');
-        const themeOptions = document.querySelectorAll('.theme-option');
-
-        bottomImageContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
-            themeDropdown.classList.toggle('show');
-        });
-
-        themeOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const theme = option.dataset.theme;
-                document.body.className = theme ? `theme-${theme}` : '';
-                
-                // Update active state
-                themeOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                
-                // Close dropdown
-                themeDropdown.classList.remove('show');
-                
-                // Save theme preference
-                localStorage.setItem('theme', theme);
-            });
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!bottomImageContainer.contains(e.target) && !themeDropdown.contains(e.target)) {
-                themeDropdown.classList.remove('show');
-            }
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.body.className = `theme-${savedTheme}`;
-            themeOptions.forEach(opt => {
-                if (opt.dataset.theme === savedTheme) {
-                    opt.classList.add('active');
-                }
-            });
-        }
     </script>
 </body>
 </html>
