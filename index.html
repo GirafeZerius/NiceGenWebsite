@@ -16,17 +16,36 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      flex-direction: column;
     }
     .message {
       max-width: 600px;
       font-size: 1.5em;
       padding: 20px;
+      margin-bottom: 20px;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      width: 100%;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
   <div class="message">
     website will be back when i will get my nicealts sellsn perms and nicegen perms back
+  </div>
+  
+  <div class="video-container">
+    <iframe id="js_video_iframe" src="https://jumpshare.com/embed/xHFOu3QdPwixW3VTL20J" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen autoplay="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
   </div>
 </body>
 </html>
