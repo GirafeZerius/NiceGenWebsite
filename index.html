@@ -1,51 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Site Offline</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      flex-direction: column;
-    }
-    .message {
-      max-width: 600px;
-      font-size: 1.5em;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .video-container {
-      position: relative;
-      width: 80%;
-      max-width: 800px;
-      height: auto;
-    }
-    video {
-      width: 100%;
-      height: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigga Mound</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        #fullscreen-trigger {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.5s;
+        }
+
+        #fullscreen-trigger:hover {
+            filter: brightness(1.2);
+        }
+
+        #trigger-text {
+            font-size: 3rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 40px;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+            text-shadow: 0 0 10px #ff0000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        #main-content {
+            display: none;
+            height: 100%;
+            position: relative;
+        }
+
+        #cemetery-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1576790625780-92f5b734b3a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            z-index: -1;
+        }
+
+        #message {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            margin: 0 20px;
+            border: 1px solid #8b0000;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+
+        #player-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #8b0000;
+            width: 300px;
+        }
+
+        #player-title {
+            margin-top: 0;
+            color: #8b0000;
+            text-align: center;
+        }
+
+        #audio-player {
+            width: 100%;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a00;
+        }
+
+        #track-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <div class="message">
-    website will be back when i will get my nicealts sellsn perms and nicegen perms back
-  </div>
-  
-  <div class="video-container">
-    <video controls>
-      <source src="https://files.catbox.moe/sjatoh.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+    <div id="fullscreen-trigger">
+        <div id="trigger-text">CLICK ME</div>
+    </div>
+
+    <div id="main-content">
+        <div id="cemetery-bg"></div>
+        
+        <div id="message">
+            original website will be back once i've received my sellsn permissions and nicegens permissions back - bypass
+        </div>
+
+        <div id="player-container">
+            <h3 id="player-title">NIGGA PLAYER</h3>
+            <audio id="audio-player" loop>
+                <!-- Replace with actual Haunted Mound Reapers audio -->
+                <source src="https://files.catbox.moe/v8xv5w.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div id="controls">
+                <button id="play-btn">PLAY</button>
+                <button id="pause-btn">PAUSE</button>
+                <button id="stop-btn">STOP</button>
+            </div>
+            <div id="track-info">
+                Now Playing: Haunted Mound Reapers
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between fullscreen trigger and main content
+        const trigger = document.getElementById('fullscreen-trigger');
+        const mainContent = document.getElementById('main-content');
+        const audioPlayer = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const stopBtn = document.getElementById('stop-btn');
+
+        trigger.addEventListener('click', () => {
+            trigger.style.display = 'none';
+            mainContent.style.display = 'block';
+            audioPlayer.load();
+        });
+
+        // Player controls
+        playBtn.addEventListener('click', () => {
+            audioPlayer.play();
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            audioPlayer.pause();
+        });
+
+        stopBtn.addEventListener('click', () => {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+        });
+    </script>
 </body>
 </html>
