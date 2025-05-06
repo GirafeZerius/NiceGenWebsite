@@ -21,7 +21,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-image: url('https://files.catbox.moe/7s8p45.mp4');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -64,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1576790625780-92f5b734b3a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-image: url('https://files.catbox.moe/7s8p45.mp4');
             background-size: cover;
             background-position: center;
             filter: brightness(0.6);
@@ -104,6 +104,7 @@
 
         #audio-player {
             width: 100%;
+            display: none; /* Hide the audio element since we're controlling it programmatically */
         }
 
         #controls {
@@ -130,6 +131,14 @@
             font-size: 0.9rem;
             text-align: center;
         }
+
+        .autoplay-error {
+            color: #ff4444;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -145,7 +154,7 @@
         </div>
 
         <div id="player-container">
-            <h3 id="player-title">NIGGA PLAYER</h3>
+            <h3 id="player-title" PLAYER</h3>
             <audio id="audio-player" loop>
                 <!-- Replace with actual Haunted Mound Reapers audio -->
                 <source src="https://files.catbox.moe/v8xv5w.mp3" type="audio/mpeg">
@@ -159,27 +168,47 @@
             <div id="track-info">
                 Now Playing: Haunted Mound Reapers
             </div>
+            <div class="autoplay-error" id="autoplay-error">
+                Autoplay blocked. Please click PLAY to start music.
+            </div>
         </div>
     </div>
 
     <script>
-        // Toggle between fullscreen trigger and main content
+        // Get elements
         const trigger = document.getElementById('fullscreen-trigger');
         const mainContent = document.getElementById('main-content');
         const audioPlayer = document.getElementById('audio-player');
         const playBtn = document.getElementById('play-btn');
         const pauseBtn = document.getElementById('pause-btn');
         const stopBtn = document.getElementById('stop-btn');
+        const autoplayError = document.getElementById('autoplay-error');
 
-        trigger.addEventListener('click', () => {
+        // Click handler for the fullscreen trigger
+        trigger.addEventListener('click', async () => {
             trigger.style.display = 'none';
             mainContent.style.display = 'block';
-            audioPlayer.load();
+            
+            try {
+                // Attempt to play audio immediately
+                audioPlayer.volume = 0.5;
+                await audioPlayer.play();
+                
+                // If successful, hide the player controls (since we autoplayed)
+                document.getElementById('controls').style.display = 'none';
+                document.getElementById('track-info').textContent = "Now Playing: Haunted Mound Reapers";
+            } catch (err) {
+                // Autoplay was blocked, show controls and error message
+                console.log("Autoplay blocked:", err);
+                autoplayError.style.display = 'block';
+                document.getElementById('controls').style.display = 'flex';
+            }
         });
 
-        // Player controls
+        // Player controls (for when autoplay is blocked)
         playBtn.addEventListener('click', () => {
             audioPlayer.play();
+            autoplayError.style.display = 'none';
         });
 
         pauseBtn.addEventListener('click', () => {
