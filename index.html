@@ -3,31 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nigga Mound</title>
+    <title>Hitlers Secret Website</title>
     
-    <!-- Open Graph / Discord Embed Meta Tags -->
-    <meta property="og:title" content="Nigga Mound">
-    <meta property="og:description" content="original website will be back once i've received my sellsn permissions and nicegens permissions back - bypass">
-    <meta property="og:image" content="https://files.catbox.moe/7s8p45.mp4">
-    <meta property="og:url" content="https://yourwebsiteurl.com"> <!-- Replace with your actual URL -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sieg Heil">
+    <meta property="og:description" content="The Black Sun Rises">
+    <meta property="og:image" content="https://files.catbox.moe/bqdabi.png">
+    <meta property="og:url" content="https://yourwebsiteurl.com">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#8b0000">
-    
-    <!-- Twitter Card Meta Tags (optional, for better Twitter sharing) -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nigga Mound">
-    <meta name="twitter:description" content="original website will be back once i've received my sellsn permissions and nicegens permissions back - bypass">
-    <meta name="twitter:image" content="https://files.catbox.moe/7s8p45.mp4">
+    <meta name="theme-color" content="#000000">
     
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Courier New', monospace;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            background-color: #000;
+            color: #c0b060;
             overflow: hidden;
+            text-transform: uppercase;
         }
 
         #fullscreen-trigger {
@@ -36,35 +31,71 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://files.catbox.moe/7s8p45.mp4');
-            background-size: cover;
-            background-position: center;
+            background: radial-gradient(circle, #1a1a00 0%, #000000 70%);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 100;
-            transition: all 0.5s;
-        }
-
-        #fullscreen-trigger:hover {
-            filter: brightness(1.2);
         }
 
         #trigger-text {
-            font-size: 3rem;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 40px;
-            border: 2px solid #8b0000;
-            border-radius: 5px;
-            text-shadow: 0 0 10px #ff0000;
-            animation: pulse 2s infinite;
+            font-size: 2.5rem;
+            letter-spacing: 0.5rem;
+            text-shadow: 0 0 10px #c0b060;
+            margin-bottom: 2rem;
+            animation: pulse 4s infinite;
+            text-align: center;
+        }
+
+        #trigger-subtext {
+            font-size: 1rem;
+            letter-spacing: 0.3rem;
+            opacity: 0.8;
+            max-width: 60%;
+            text-align: center;
+            line-height: 1.5;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        #vril-symbol {
+            width: 150px;
+            height: 150px;
+            background-image: url('https://files.catbox.moe/bqdabi.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-bottom: 2rem;
+            filter: sepia(1) hue-rotate(30deg) brightness(1.2);
+            animation: slowSpin 20s linear infinite;
+        }
+
+        @keyframes slowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 200;
+            background: #000;
+        }
+
+        #vril-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         #main-content {
@@ -73,166 +104,69 @@
             position: relative;
         }
 
-        #cemetery-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://files.catbox.moe/7s8p45.mp4');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.6);
-            z-index: -1;
-        }
-
-        #message {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            margin: 0 20px;
-            border: 1px solid #8b0000;
-            color: #e0e0e0;
-            font-size: 1rem;
-        }
-
-        #player-container {
+        .warning {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #8b0000;
-            width: 300px;
-        }
-
-        #player-title {
-            margin-top: 0;
-            color: #8b0000;
-            text-align: center;
-        }
-
-        #audio-player {
             width: 100%;
-            display: none; /* Hide the audio element since we're controlling it programmatically */
-        }
-
-        #controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        button {
-            background-color: #8b0000;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #a00;
-        }
-
-        #track-info {
-            margin-top: 10px;
-            font-size: 0.9rem;
             text-align: center;
-        }
-
-        .autoplay-error {
-            color: #ff4444;
             font-size: 0.8rem;
-            margin-top: 10px;
-            text-align: center;
-            display: none;
+            letter-spacing: 0.2rem;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
     <div id="fullscreen-trigger">
-        <div id="trigger-text">CLICK ME</div>
+        <div id="vril-symbol"></div>
+        <div id="trigger-text">The sun will rise again</div>
+        <div id="trigger-subtext">CLICK TO ACTIVATE THE CHAMBER</div>
     </div>
 
-    <div id="main-content">
-        <div id="cemetery-bg"></div>
-        
-        <div id="message">
-            original website will be back once i've received my sellsn permissions and nicegens permissions back - bypass
-        </div>
+    <div id="video-container">
+        <video id="vril-video" autoplay muted loop>
+            <source src="https://files.catbox.moe/qf5lqj.mp4" type="video/mp4">
+        </video>
+    </div>
 
-        <div id="player-container">
-            <h3 id="player-title" PLAYER</h3>
-            <audio id="audio-player" loop>
-                <!-- Replace with actual Haunted Mound Reapers audio -->
-                <source src="https://files.catbox.moe/v8xv5w.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <div id="controls">
-                <button id="play-btn">PLAY</button>
-                <button id="pause-btn">PAUSE</button>
-                <button id="stop-btn">STOP</button>
-            </div>
-            <div id="track-info">
-                Now Playing: Haunted Mound Reapers
-            </div>
-            <div class="autoplay-error" id="autoplay-error">
-                Autoplay blocked. Please click PLAY to start music.
-            </div>
-        </div>
+    <div class="warning">
+        WARNING: ARGHHHH
     </div>
 
     <script>
-        // Get elements
         const trigger = document.getElementById('fullscreen-trigger');
-        const mainContent = document.getElementById('main-content');
-        const audioPlayer = document.getElementById('audio-player');
-        const playBtn = document.getElementById('play-btn');
-        const pauseBtn = document.getElementById('pause-btn');
-        const stopBtn = document.getElementById('stop-btn');
-        const autoplayError = document.getElementById('autoplay-error');
+        const videoContainer = document.getElementById('video-container');
+        const vrilVideo = document.getElementById('vril-video');
 
-        // Click handler for the fullscreen trigger
         trigger.addEventListener('click', async () => {
             trigger.style.display = 'none';
-            mainContent.style.display = 'block';
+            videoContainer.style.display = 'block';
             
             try {
-                // Attempt to play audio immediately
-                audioPlayer.volume = 0.5;
-                await audioPlayer.play();
+                // Attempt to play video in fullscreen
+                await vrilVideo.play();
                 
-                // If successful, hide the player controls (since we autoplayed)
-                document.getElementById('controls').style.display = 'none';
-                document.getElementById('track-info').textContent = "Now Playing: Haunted Mound Reapers";
+                // Request fullscreen
+                if (videoContainer.requestFullscreen) {
+                    await videoContainer.requestFullscreen();
+                } else if (videoContainer.webkitRequestFullscreen) { /* Safari */
+                    await videoContainer.webkitRequestFullscreen();
+                } else if (videoContainer.msRequestFullscreen) { /* IE11 */
+                    await videoContainer.msRequestFullscreen();
+                }
+                
             } catch (err) {
-                // Autoplay was blocked, show controls and error message
-                console.log("Autoplay blocked:", err);
-                autoplayError.style.display = 'block';
-                document.getElementById('controls').style.display = 'flex';
+                console.error("Fullscreen/video error:", err);
+                // Fallback - just show video if fullscreen fails
+                vrilVideo.play();
             }
         });
 
-        // Player controls (for when autoplay is blocked)
-        playBtn.addEventListener('click', () => {
-            audioPlayer.play();
-            autoplayError.style.display = 'none';
-        });
-
-        pauseBtn.addEventListener('click', () => {
-            audioPlayer.pause();
-        });
-
-        stopBtn.addEventListener('click', () => {
-            audioPlayer.pause();
-            audioPlayer.currentTime = 0;
+        // Exit fullscreen when video ends (though it's looping)
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                videoContainer.style.display = 'none';
+                trigger.style.display = 'flex';
+            }
         });
     </script>
 </body>
