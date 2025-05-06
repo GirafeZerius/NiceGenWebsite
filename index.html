@@ -26,16 +26,12 @@
     }
     .video-container {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
       width: 100%;
+      max-width: 800px;
     }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    video {
       width: 100%;
-      height: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -45,7 +41,10 @@
   </div>
   
   <div class="video-container">
-    <iframe id="js_video_iframe" src="https://jumpshare.com/embed/xHFOu3QdPwixW3VTL20J" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen autoplay="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    <video autoplay loop muted>
+      <source src="https://files.catbox.moe/sjatoh.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </body>
 </html>
